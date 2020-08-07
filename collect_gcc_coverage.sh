@@ -61,3 +61,6 @@ cd $RESULT_DIR
 lcov -a test_suite.info -a random_testing.info -o all.info --rc lcov_branch_coverage=1 > all-full.txt
 tail -n 4 all-full.txt > all.txt
 
+# Generate high-level report
+cd $ROOT_DIR
+python3 gcc_prettify_coverage.py --rand-report $RESULT_DIR/random_testing.txt --test-report $RESULT_DIR/test_suite.txt --all-report $RESULT_DIR/all.txt 
