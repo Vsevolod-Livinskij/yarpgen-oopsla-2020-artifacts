@@ -36,7 +36,7 @@ function save_results () {
 function clear_results () {
     cd $ROOT_DIR/gcc-build-cov
     find . -name "*.gcda" > file_list.txt
-    xargs rm < file_list.txt
+    xargs rm -f < file_list.txt
 }
 
 
@@ -58,8 +58,8 @@ save_results random_testing
 
 # Step 3: yarpgen and unit test suite combined
 cd $RESULT_DIR
-lcov -a test_suite.info -a random_testing.info -o all.info --rc lcov_branch_coverage=1 > all-full.txt
-tail -n 4 all-full.txt > all.txt
+lcov -a test_suite.info -a random_testing.info -o all.info --rc lcov_branch_coverage=1 > all_full.txt
+tail -n 4 all_full.txt > all.txt
 
 # Generate high-level report
 cd $ROOT_DIR

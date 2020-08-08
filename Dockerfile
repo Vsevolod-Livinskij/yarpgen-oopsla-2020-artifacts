@@ -39,7 +39,8 @@ WORKDIR /usr/local/artifacts/gcc-src
 #RUN apt-get -y update && DEBIAN_FRONTEND="noninteractive" apt-get -y install flex make libisl-dev texinfo build-essential gcc-multilib
 RUN contrib/gcc_build -d /usr/local/artifacts/gcc-src -o /usr/local/artifacts/gcc-build-cov -c "--enable-coverage --enable-multilib --prefix=/usr/local/artifacts/gcc-bin-cov --disable-bootstrap" -m "-j120" configure build install
 
-RUN apt-get -y update && DEBIAN_FRONTEND="noninteractive" apt-get -y install lcov autogen dejagnu vim
+RUN apt-get -y update && DEBIAN_FRONTEND="noninteractive" apt-get -y install lcov autogen dejagnu vim python3-pip llvm
+RUN pip3 install psutil
 
 WORKDIR /usr/local/artifacts
 RUN git clone https://github.com/Vsevolod-Livinskij/yarpgen
