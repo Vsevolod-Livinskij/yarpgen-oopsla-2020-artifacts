@@ -2,7 +2,7 @@ FROM ubuntu:20.04
 
 #Update
 RUN apt-get -y update && DEBIAN_FRONTEND="noninteractive" apt-get -y install git cmake ninja-build gcc g++ clang curl wget flex make libisl-dev texinfo build-essential gcc-multilib lcov autogen dejagnu vim python3-pip llvm
-RUN pip3 install psutil
+RUN pip3 install psutil scipy
 
 
 #Get LLVM

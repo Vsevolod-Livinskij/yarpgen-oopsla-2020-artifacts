@@ -4,9 +4,7 @@ ROOT_DIR=/usr/local/artifacts
 RESULT_DIR=$ROOT_DIR/results/gcc-coverage
 
 # Timeout for random testing in minutes
-if [[ -z YARPGEN_TIMEOUT ]]; then
-    YARPGEN_TIMEOUT=1
-fi
+YARPGEN_TIMEOUT="${YARPGEN_TIMEOUT:-1}"
 
 
 # Initial setup
