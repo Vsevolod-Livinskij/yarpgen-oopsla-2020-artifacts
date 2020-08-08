@@ -1,0 +1,13 @@
+diff --git a/contrib/gcc_build b/contrib/gcc_build
+index 6713066d7ce..d2cb566adec 100755
+--- a/contrib/gcc_build
++++ b/contrib/gcc_build
+@@ -146,7 +146,7 @@ bootstrap_gcc() {
+ 
+     # Bootstrap the compiler
+     echo "Building: ${MAKE} ${MAKE_BOOTSTRAP_OPTIONS} bootstrap"
+-    eval ${MAKE} ${MAKE_BOOTSTRAP_OPTIONS} bootstrap || \
++    eval ${MAKE} ${MAKE_BOOTSTRAP_OPTIONS} || \
+ 	error "Could not bootstrap the compiler"
+ }
+ 
