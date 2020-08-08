@@ -4,7 +4,9 @@ ROOT_DIR=/usr/local/artifacts
 RESULT_DIR=$ROOT_DIR/results/llvm-coverage
 
 # Timeout for random testing in minutes
-YARPGEN_TIMEOUT=1
+if [[ -z YARPGEN_TIMEOUT ]]; then
+    YARPGEN_TIMEOUT=1
+fi
 
 
 # Initial setup
@@ -35,15 +37,19 @@ clear_results () {
 
 
 # Step 1: unit test suite
-clear_results
-ninja check-all
-save_results test_suite
+if [[ -v RECOLLECT_COMPILER_COVERAGE ]]; then
+    clear_results
+    ninja check-all
+    save_results test_suite
+fi
+
 
 # Step 2: random testing
 clear_results
 cd $ROOT_DIR/yarpgen
 PATH=$ROOT_DIR/llvm-bin-cov/bin:$PATH python3 ./run_gen.py --timeout $YARPGEN_TIMEOUT --target "clang"
 save_results random_testing
+
 
 # Step 3: yarpgen and unit test suite combined
 clear_results
@@ -54,5 +60,7 @@ cp all.profdata $RESULT_DIR
 cp all_full.txt $RESULT_DIR
 cp all.txt $RESULT_DIR
 
+
 # Generate high-level report
+cd $ROOT_DIR
 python3 llvm_prettify_coverage.py --rand-report $RESULT_DIR/random_testing.txt --test-report $RESULT_DIR/test_suite.txt --all-report $RESULT_DIR/all.txt

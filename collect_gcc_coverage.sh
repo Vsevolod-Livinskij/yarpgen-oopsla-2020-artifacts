@@ -4,7 +4,9 @@ ROOT_DIR=/usr/local/artifacts
 RESULT_DIR=$ROOT_DIR/results/gcc-coverage
 
 # Timeout for random testing in minutes
-YARPGEN_TIMEOUT=1
+if [[ -z YARPGEN_TIMEOUT ]]; then
+    YARPGEN_TIMEOUT=1
+fi
 
 
 # Initial setup
@@ -44,9 +46,11 @@ function clear_results () {
 #real   46m36.098s
 #user   920m33.600s
 #sys    1674m40.584s
-clear_results
-make -j120 check
-save_results test_suite
+if [[ -v RECOLLECT_COMPILER_COVERAGE ]]; then
+    clear_results
+    make -j120 check
+    save_results test_suite
+fi
 
 
 # Step 2: random testing
@@ -60,6 +64,7 @@ save_results random_testing
 cd $RESULT_DIR
 lcov -a test_suite.info -a random_testing.info -o all.info --rc lcov_branch_coverage=1 > all_full.txt
 tail -n 4 all_full.txt > all.txt
+
 
 # Generate high-level report
 cd $ROOT_DIR
