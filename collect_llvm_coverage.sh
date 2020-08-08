@@ -54,3 +54,5 @@ cp all.profdata $RESULT_DIR
 cp all_full.txt $RESULT_DIR
 cp all.txt $RESULT_DIR
 
+# Generate high-level report
+python3 llvm_prettify_coverage.py --rand-report $RESULT_DIR/random_testing.txt --test-report $RESULT_DIR/test_suite.txt --all-report $RESULT_DIR/all.txt
