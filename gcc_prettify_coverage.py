@@ -74,7 +74,7 @@ if __name__ == '__main__':
                                help="Unit test suite report")
     requiredNamed.add_argument("--all-report", dest="all_report", type=str, required=True,
                                help="Combined report")
-    parser.add_argument("-o", "--output-file", dest="out_file", default="gcc-report.txt", type=str,
+    parser.add_argument("-o", "--output-file", dest="out_file", default="gcc_coverage_report.txt", type=str,
                         help="Output file")
     args = parser.parse_args()
     prettify(args.rand_report, args.test_report, args.all_report, args.out_file)
