@@ -17,7 +17,7 @@ We have been advised to remove the Section 4.4 from the paper, so it is omitted 
 
 Notes
 ======
-All of the necessary scripts, programs, and data are located in ````/usr/local/artifacts``.
+All of the necessary scripts, programs, and data are located in ``/usr/local/artifacts``.
 We will refer to it as ``ROOT_DIR`` in this manual.
 
 We have to omit coverage for SPEC CPU 2017, because it can't be distributed.
@@ -38,6 +38,7 @@ We've pre-collected unit test suite coverage in order to reduce required testing
 
 Full report
 ============
+[``full_report.sh``](full_report.sh)
 It allows you to reproduce almost all of the experimtes that are described in sections 4.3 and 4.5.
 It will collect coverages for gcc and llvm test suites, perform random testing and report results.
 It will also collect optimization counters.
